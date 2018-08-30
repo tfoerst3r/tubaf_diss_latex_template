@@ -1,0 +1,45 @@
+% Infos see https://de.sharelatex.com/learn/Nomenclatures
+
+% nomenclature preamble --------------------------
+\renewcommand\nomgroup[1]{%
+	\item[\bfseries
+		\ifstrequal{#1}{A}{\vspace{1ex}Roman symbols}{%
+		\ifstrequal{#1}{B}{Greek symbols}{%
+		\ifstrequal{#1}{C}{Abbreviations}{%
+		\ifstrequal{#1}{D}{Subscripts}{%
+		\ifstrequal{#1}{E}{Superscripts}{%
+	}}}}}%
+]}
+
+% Adds units to nomenclature -----------
+\newcommand{\nomSI}[2]{%
+	\renewcommand{\nomentryend}{\dotfill\SI{#1}{#2}}}
+\newcommand{\nomunit}[1]{%
+	\renewcommand{\nomentryend}{\dotfill\si{#1}}}
+%-------------------------------------------------
+
+	
+% Latin symbols					
+\nomenclature[A]{$c$}{Speed of light in a vacuum inertial system \nomSI{299.7918}{\meter \per \second}}
+\nomenclature[A]{$h$}{Plank Constant \nomunit{Js}}
+\nomenclature[A]{$g$}{Gravitational Constant \nomSI{9.81}{\meter \per \second\tothe{2}}}
+
+
+% Greek symbols
+\nomenclature[B, 03]{$\mathbb{R}$}{Real Numbers}
+\nomenclature[B, 02]{$\mathbb{C}$}{Complex Numbers}
+\nomenclature[B, 01]{$\mathbb{H}$}{Quaternions}
+
+
+% Abbreviations
+\nomenclature[C]{CFD}{Computational Fluid Dynamics}
+
+
+% Subscripts
+\nomenclature[D]{$p$}{particle}
+\nomenclature[D]{$r$}{reactive}
+
+
+% Superscripts
+\nomenclature[E]{o}{standard conditions}
+

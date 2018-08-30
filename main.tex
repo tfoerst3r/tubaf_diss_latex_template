@@ -1,0 +1,205 @@
+\documentclass
+[
+   	sprache=nobabel,
+   	hausschrift=true,
+  	fleqn,
+	status=eingereicht, %genehmigt,
+	fontsize=11pt,
+	twoside=true,
+%	draft=true,			% for many package this must be false to work
+	toc=bibliography,
+	appendixprefix,
+]
+{TUBAFdishab}
+
+
+%-- PACKAGE SETTING ----------------------------------------
+%-- general --------------------------------------
+\usepackage[utf8]{inputenc}				% symbol format, [ansinew,utf8,latin1]
+\usepackage[T1]{fontenc}				% fonts including umlaute
+\usepackage{graphicx}                   % displaying images 
+\usepackage[version=4]{mhchem}			% to write chemical equations with 
+\usepackage{framed}						% frame env for color 
+\usepackage{xcolor}						% needed for color definition; options 
+\usepackage{syntonly}					% just a tool only syntax check -- for speed
+\usepackage[intoc]{nomencl}				% generates via index a nomenclature
+\usepackage{todonotes}					% manages todo notes in the pdf
+\usepackage{bookmark}
+%-- example: \todo[caption={specific surface},inline,size=\small]{test}
+
+
+%-- math -----------------------------------------
+\usepackage{amssymb}					% math symbols
+\usepackage{amsmath}					% layout of equations incl. \DeclareMathOperator
+
+%-- tables ---------------------------------------
+\usepackage{booktabs}					% enhance tables toprule midrule  bottomrule
+\usepackage{array}						% enhance table settings and fixes
+\usepackage{tabularx}					% more flexible tables are useable
+
+%-- units ----------------------------------------
+\usepackage{siunitx}					% easier to use unit syntax
+
+%-- bibliography ---------------------------------
+\usepackage[
+backend=biber,
+style=numeric-comp,
+natbib=false,
+mcite=false,
+]{biblatex}
+
+
+%-- package setups -------------------------------
+\ExecuteBibliographyOptions{
+	sorting=none,
+	doi=false,
+	isbn=false,
+	url=false,
+	autocite=footnote,
+	maxcitenames=1,
+}
+
+\sisetup{
+	per-mode 				= fraction,
+	output-decimal-marker	= {.},
+	tight-spacing 			= true,		% tight spacing
+	group-minimum-digits 	= 4,  		% start grouping from 4 digits, in 3 no groups
+	range-units 			= single,   % 2-3C not 2C-3C
+	exponent-product 		= \cdot, 	% writes 1e6 -> 1 \cdot 10^6
+	fraction-function 		= \tfrac,
+	group-minimum-digits 	= 4,  		% start grouping from 4 digits, in 3 no groups
+	power-font = unit,					% decreases size of power-font
+	separate-uncertainty = true,		% set uncertainty to plus minus
+	detect-all,
+}
+
+
+%-- DEFINITIONS --------------------------------------------
+%-- writes: Appendix A ---------------------------
+\appto\appendix{%
+	\renewcommand{\addchaptertocentry}[2]{
+		\ifstr{#1}{}{%
+			\addtocentrydefault{chapter}{}{#2}%
+		}{%
+			\addtocentrydefault{chapter}{}{\chapapp~#1: #2}%
+		}%
+	}
+}
+
+%-- colors ---------------------------------------
+%-- needed: xcolors
+% l..light
+% d..dark
+% hf..hausfarbe (TUBAF)
+
+% black
+\definecolor{lgray}{gray}{.90}
+\definecolor{dgray}{RGB}{102,102,102}
+
+% green
+\definecolor{lgreen}{RGB}{143,237,143}
+\definecolor{green1}{RGB}{138,165,78}
+
+% blue
+\definecolor{dblue}{RGB}{0,0,140}
+\definecolor{blue1}{RGB}{69,115,167}
+\definecolor{hf}{RGB}{0,100,170}
+
+% red
+\definecolor{dred}{RGB}{152,0,0}
+\definecolor{red1}{RGB}{170,70,68}
+
+% yellow
+\definecolor{yellow1}{RGB}{224,195,4}
+
+% other
+\definecolor{webgreen}{rgb}{0, 0.5, 0} % less intense green
+\definecolor{webblue}{rgb}{0, 0, 0.5}  % less intense blue
+\definecolor{webred}{rgb}{0.5, 0, 0}   % less intense red
+
+
+%-- OTHER SETTINGS -----------------------------------------
+\renewcommand{\arraystretch}{1.3}
+\graphicspath{{./images/}}
+\bibliography{own_bibfile}
+\makenomenclature
+%\syntaxonly
+
+
+%-- TITLEPAGE ----------------------------------------------
+\TUBAFFakultaet{Fakulty}
+\TUBAFTitel{Title}
+
+\TUBAFAutor{First Last Name}
+\TUBAFGrad[Dr.-Ing.]{Doktor-Ingenieur}
+\TUBAFgebam{01-01.2000}
+\TUBAFgebin{place}
+\TUBAFDatum{\today}
+%\TUBAFDatumfs{date}
+
+\TUBAFGutachter{%
+	Prof.\,Dr.-Ing. Jan Mustermann\newline
+	Prof.\,Dr.-Ing. Anna Musterfrau
+}
+
+
+\begin{document}
+	
+\maketitle
+
+%-- FRONTMATTER --------------------------------------------
+\frontmatter
+
+
+%-- Declaration ----------------------------------
+%\TUBAFErklaerungsseite[]
+
+
+%-- Acknowledgments ------------------------------
+\include{frontmatter/acknowledgments}
+
+
+%-- Abstract -------------------------------------
+\include{frontmatter/abstract}
+
+
+%-- ToC ------------------------------------------
+\setcounter{tocdepth}{1}
+\pdfbookmark[0]{\contentsname}{toc}
+\tableofcontents
+
+
+%-- Tables, Figures and Nomenclature lists -------
+%\listoffigures
+%\listoftables
+\include{frontmatter/nomenclature}
+\printnomenclature
+
+
+%-- MAINMATTER ---------------------------------------------
+\mainmatter
+
+\include{chapter/01_introduction}
+
+
+
+%-- APPENDIX -----------------------------------------------
+\appendix
+\include{appendix/appendix_preamble}
+\include{appendix/appendix_a}
+
+
+%-- BIBLIOGRAPHY -------------------------------------------
+\printbibliography
+
+%-- ToDo list overview
+\addtocontents{toc}{\protect\setcounter{tocdepth}{1}}
+\listoftodos
+\todototoc
+
+\end{document}
+
+
+
+
+
