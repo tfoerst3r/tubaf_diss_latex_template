@@ -19,35 +19,27 @@
 \usepackage[T1]{fontenc}				% fonts including umlaute
 \usepackage{graphicx}                   % displaying images 
 \usepackage[version=4]{mhchem}			% to write chemical equations with 
-\usepackage{framed}						% frame env for color 
 \usepackage{xcolor}						% needed for color definition; options 
 \usepackage{syntonly}					% just a tool only syntax check -- for speed
 \usepackage[intoc]{nomencl}				% generates via index a nomenclature
 \usepackage{todonotes}					% manages todo notes in the pdf
 \usepackage{bookmark}
-%-- example: \todo[caption={specific surface},inline,size=\small]{test}
-
-
-%-- math -----------------------------------------
+\usepackage{textcomp}
 \usepackage{amssymb}					% math symbols
 \usepackage{amsmath}					% layout of equations incl. \DeclareMathOperator
-
-%-- tables ---------------------------------------
 \usepackage{booktabs}					% enhance tables toprule midrule  bottomrule
 \usepackage{array}						% enhance table settings and fixes
 \usepackage{tabularx}					% more flexible tables are useable
-
-%-- units ----------------------------------------
 \usepackage{siunitx}					% easier to use unit syntax
 
-%-- bibliography ---------------------------------
 \usepackage[
-backend=biber,
-style=numeric-comp,
-natbib=false,
-mcite=false,
+    backend=biber,
+    style=numeric-comp,
+    natbib=false,
+    mcite=false,
 ]{biblatex}
 
+\usepackage{hyperref}					% generates bookmarks and references in pdf
 
 %-- package setups -------------------------------
 \ExecuteBibliographyOptions{
@@ -71,7 +63,10 @@ mcite=false,
 	power-font = unit,					% decreases size of power-font
 	separate-uncertainty = true,		% set uncertainty to plus minus
 	detect-all,
+    math-micro=\text{\textmu}
 }
+
+
 
 
 %-- DEFINITIONS --------------------------------------------
@@ -88,29 +83,10 @@ mcite=false,
 
 %-- colors ---------------------------------------
 %-- needed: xcolors
-% l..light
-% d..dark
 % hf..hausfarbe (TUBAF)
 
-% black
-\definecolor{lgray}{gray}{.90}
-\definecolor{dgray}{RGB}{102,102,102}
-
-% green
-\definecolor{lgreen}{RGB}{143,237,143}
-\definecolor{green1}{RGB}{138,165,78}
-
 % blue
-\definecolor{dblue}{RGB}{0,0,140}
-\definecolor{blue1}{RGB}{69,115,167}
 \definecolor{hf}{RGB}{0,100,170}
-
-% red
-\definecolor{dred}{RGB}{152,0,0}
-\definecolor{red1}{RGB}{170,70,68}
-
-% yellow
-\definecolor{yellow1}{RGB}{224,195,4}
 
 % other
 \definecolor{webgreen}{rgb}{0, 0.5, 0} % less intense green
@@ -127,21 +103,22 @@ mcite=false,
 
 
 %-- TITLEPAGE ----------------------------------------------
-\TUBAFFakultaet{Fakulty}
+\TUBAFFakultaet{Faculty A}
 \TUBAFTitel{Title}
 
 \TUBAFAutor{First Last Name}
 \TUBAFGrad[Dr.-Ing.]{Doktor-Ingenieur}
 \TUBAFgebam{01-01.2000}
-\TUBAFgebin{place}
+\TUBAFgebin{place A}
 \TUBAFDatum{\today}
-%\TUBAFDatumfs{date}
+
 
 \TUBAFGutachter{%
 	Prof.\,Dr.-Ing. Jan Mustermann\newline
 	Prof.\,Dr.-Ing. Anna Musterfrau
 }
 
+%\syntaxonly
 
 \begin{document}
 	
