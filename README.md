@@ -27,8 +27,10 @@ In order to speed up the writing process you may use `draft`, which creates a dr
 
 # Compiling latex in a bash
 
- #. `pdflatex <file>.tex`
- #. `makeindex <file>.nlo -s nomencl.ist -o <file>.nls`
- #. `pdflatex <file>.tex`
+```
+$> pdflatex <file>.tex
+$> makeindex <file>.nlo -s nomencl.ist -o <file>.nls
+$> pdflatex <file>.tex
+```
 
 
